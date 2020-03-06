@@ -7,6 +7,9 @@ var logger = require('morgan');
 var indexRouter = require('./routes/index');
 var usersRouter = require('./routes/users');
 
+var bookRouter = require("./routes/book_router")
+var crudRouter = require("./routes/crud_router")
+
 var app = express();
 
 // view engine setup
@@ -22,6 +25,21 @@ app.use(express.static(path.join(__dirname, 'public')));
 app.use('/', indexRouter);
 app.use('/users', usersRouter);
 
+app.use('/book',bookRouter)
+// 데이터 지향
+// localhost:3000/crud/:id/list
+// --> /crud/book/list
+// --> /crud/member/list
+// --> /crud/address/list
+app.use('/crud',crudRouter)
+
+/*
+ Resourse 지향형 
+  localhost:3000/book/list
+  localhost:3000/book/insert
+  localhost:3000/book/update
+  localhost:3000/book/delete
+*/
 // catch 404 and forward to error handler
 app.use(function(req, res, next) {
   next(createError(404));
