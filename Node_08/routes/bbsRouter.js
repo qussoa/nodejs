@@ -1,6 +1,17 @@
 var express = require('express')
 var router = express.Router()
 
+// moment & moment-timezone 순서대로 require
+var moment = require('moment') // 1
+
+// require만 해주면 moment내에서 자체적으로 호출하여
+// 사용하는 미들웨어 
+var momentTimezone = require('moment-timezone') // 2
+
+// moment를 사용하기 앞서
+// 사용할 시간대를 설정해 주어야 한다 
+moment.tz.setDefault('Asia/Seoul')
+
 // models 폴더내에 여러개의 VO가 있을 경우 배열로 가져오기
 var {bbsVO} = require("../models")
 
@@ -15,8 +26,8 @@ router.get("/",function(req,res){
 
 router.get("/insert",function(req,res){
     let bbsVO = {
-        b_date : '2020-03-10',
-        b_time : "11:04:00"
+        b_date : moment().format("YYYY[-]MM[-]DD"),
+        b_time : moment().format("hh:mm:dd")
     }
     res.render("bbs/write",{
         bbsVO : bbsVO
@@ -27,8 +38,8 @@ router.post("/insert",function(req,res){
    
     bbsVO.create({
         b_writer : req.body.b_writer,
-        b_date : req.body.b_date,
-        b_time : req.body.b_time,
+        b_date : moment().format("YYYY[-]MM[-]DD"),
+        b_time : moment().format("hh:mm:dd"),
         b_subject : req.body.b_subject,
         b_text : req.body.b_text,
         })
@@ -73,8 +84,8 @@ router.post("/update/:id",function(req,res){
     let id = req.params.id
     bbsVO.update({
         b_writer : req.body.b_writer,
-        b_date : req.body.b_date,
-        b_time : req.body.b_time,
+        b_date : moment().format("YYYY[-]MM[-]DD"),
+        b_time : moment().format("hh:mm:dd"),
         b_subject : req.body.b_subject,
         b_text : req.body.b_text,
     },

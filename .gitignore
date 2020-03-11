@@ -61,11 +61,11 @@ typings/
 RemoteSystemsTempFiles/
 
 # mySec File
-
+config.json
+dataGokr.*
 myData.go.kr.key.js
 naver_secret.js
 
 # ETC
 .bak
 
-config.json
