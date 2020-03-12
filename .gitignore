@@ -63,6 +63,7 @@ RemoteSystemsTempFiles/
 # mySec File
 config.json
 dataGokr.*
+naver_secret.*
 myData.go.kr.key.js
 naver_secret.js
 
