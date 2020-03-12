@@ -3,7 +3,7 @@ extends ../layout
 block content
 
     each movie,index in movies
-        div#page_content.w3-main.w3-content
+        div#page_content.w3-main.w3-content.w3-center
             div.w3-col-padding.w3-center
                 div#quarterbox.w3-quarter
                     img(src=movie.image)
@@ -12,7 +12,7 @@ block content
                     p#subtitle= movie.subtitle
                     p#pubDate= movie.pubDate
                     p#director= movie.director
-                    p#actor= movie.actor
+                    p#actor.elipsis= movie.actor
 
                 // html 코드에 보이는 주석
                 //- html 코드에 보이지 않는 주석
