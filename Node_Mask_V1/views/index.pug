@@ -19,13 +19,22 @@ block content
         center: new Tmapv2.LatLng(initLat,initLng),
         zoom: 15
       })
+        map.addListenner('click',function(e){
+          var lnglat = e.LatLng
+          new Tmapv2.Marker({
+            position : new Tmapv2.LatLng(lnglat.lat(),lnglat.lng()),
+            map : map,
+            draggabl:true
+          })  
+        })
 
       // 마크 찍기
       marketList.forEach(function(market){
         new Tmapv2.Marker({
           position : new Tmapv2.LatLng(market.lat, market.lng),
           map : map,
-          title : market.name + "<br>" + market.addr + "<br>" + market.remain_stat
+          title : market.name + "<br>" + market.addr + "<br>" + market.remain_stat,
+          draggabl:true
         })
       })
     })
