@@ -14,7 +14,8 @@ const TodoMain = ({
   onCreate,
   onChange,
   onKeyPress,
-  onToggle
+  onToggle,
+  onDelete
 }) => {
   return (
     <main className="todoTemplate">
@@ -29,7 +30,7 @@ const TodoMain = ({
         />
       </div>
       <div className="todoList-controller">
-        <TodoList todoList={todoList} onToggle={onToggle} />
+        <TodoList todoList={todoList} onToggle={onToggle} onDelete={onDelete} />
       </div>
     </main>
   );

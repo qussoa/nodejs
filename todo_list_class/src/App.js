@@ -92,6 +92,15 @@ class App extends Component {
     });
   };
 
+  // 현재 클릭된(id가 선택된) 아이템만 남기고
+  // 나머지 리스트만 추출하기
+  handleDelete = id => {
+    const { todoList } = this.state;
+    this.setState({
+      todoList: todoList.filter(todo => todo.id !== id)
+    });
+  };
+
   // react lifeCycle 중에 작동되는 method
   // 최초 어플이 실행되면 한번 작동이 되고
   // 데이터나 화면 디자인이 변경되면 호출되는 method
@@ -99,7 +108,13 @@ class App extends Component {
     // 자식 component에 데이터를 전달하기 위해
     // state로 선언된 데이터들을 props로 변환
     const { input, todoList } = this.state;
-    const { handleCreate, handleChange, handleKeyPress, handleToggle } = this;
+    const {
+      handleCreate,
+      handleChange,
+      handleKeyPress,
+      handleToggle,
+      handleDelete
+    } = this;
     return (
       <div>
         <TodoMain
@@ -109,6 +124,7 @@ class App extends Component {
           onChange={handleChange}
           onKeyPress={handleKeyPress}
           onToggle={handleToggle}
+          onDelete={handleDelete}
         />
       </div>
     );

@@ -15,9 +15,9 @@ import TodoItem from "./TodoItem";
     4. componentDidMount()
 */
 class TodoList extends Component {
-  constructor(props) {
-    super(props);
-  }
+  // constructor(props) {
+  // super(props);
+  // }
   /*
     화면에 리스트를 표시하기 위한 todolist 배열이
     변경이 되었느냐를 판단해서
@@ -35,29 +35,35 @@ class TodoList extends Component {
 
   render() {
     // 부모 컴포넌트에 전달받은 데이터를 분해
-    const { todoList, onToggle } = this.props;
+    const { todoList, onToggle, onDelete } = this.props;
     const todoMaps = todoList.map(({ id, text, checked }) => (
-      <TodoItem id={id} text={text} checked={checked} onToggle={onToggle} />
+      <TodoItem
+        id={id}
+        text={text}
+        checked={checked}
+        onToggle={onToggle}
+        onDelete={onDelete}
+      />
     ));
     return <div>{todoMaps}</div>;
   }
 
-  //v17 이후에서는 사용불가 상태
-  componentWillMount() {}
   // v17 이후에서는 사용불가 상태
-  componentDidMount() {}
+  //componentWillMount() {}
+  // v17 이후에서는 사용불가 상태
+  //componentDidMount() {}
   // v17 이후에서는 사용불가 상태
   // getDeriverdStateFromProps() 으로 변경
-  componentWillReceiveProps(nextProps) {}
+  //componentWillReceiveProps(nextProps) {}
 
-  //shouldComponentUpdate(nextProps, nextState) {}
+  // shouldComponentUpdate(nextProps, nextState) {}
   // v17 이후에서는 사용불가 상태
   // getSnapshotBeformUpdate()
-  componentWillUpdate(nextProps, nextState) {}
+  //componentWillUpdate(nextProps, nextState) {}
   // v17 이후에서는 사용불가 상태
-  componentDidUpdate(prevProps, prevState) {}
+  //componentDidUpdate(prevProps, prevState) {}
 
-  componentWillUnmount() {}
+  //componentWillUnmount() {}
 }
 
 //TodoList.propTypes = {};
