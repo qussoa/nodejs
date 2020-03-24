@@ -1,9 +1,9 @@
 import React from "react";
 import "./App.css";
-import BBsMain from "./bbs/BBsMain";
+import BucketMain from "./bucket/BucketMain";
 
 function App() {
-  return <BBsMain />;
+  return <BucketMain />;
 }
 
 export default App;

@@ -7,8 +7,8 @@ class PhoneMain extends Component {
   id = 2;
   state = {
     phoneList: [
-      { id: 0, name: "나", phone: "010-4053-9404" },
-      { id: 1, name: "반쪽", phone: "010-2371-8517" }
+      { id: 0, name: "나", phone: "" },
+      { id: 1, name: "반쪽", phone: "" }
     ]
   };
 

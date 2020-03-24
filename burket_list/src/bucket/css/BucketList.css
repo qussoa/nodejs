@@ -1,0 +1,12 @@
+table {
+  text-align: center;
+  justify-items: center;
+  margin: 0 auto;
+  border-bottom: 1px solid black;
+  padding: 10px;
+}
+
+tr {
+  font-family: "SangSangShinb7";
+  font-size: 50px;
+}
