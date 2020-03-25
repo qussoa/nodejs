@@ -1,9 +1,11 @@
 import React, { Component } from "react";
+import "../bucket/css/BucketListItem.css";
 
 class BucketListItem extends Component {
   state = {
     isEditing: false,
-    b_target: ""
+    b_target: "",
+    b_checked: false
   };
 
   inputClick = ev => {
@@ -47,7 +49,8 @@ class BucketListItem extends Component {
 
   updateCheckhandle = ev => {
     const { bucket, bucket_main_url } = this.props;
-    const data = { _id: bucket._id };
+
+    const data = { _id: bucket._id, b_goalDate: bucket.b_goalDate };
     fetch(bucket_main_url, {
       method: "PUT",
       headers: {
@@ -77,7 +80,11 @@ class BucketListItem extends Component {
     return (
       <tr data-id={bucket._id} onClick={this.toggleEdit}>
         <td>
-          <input type="checkbox" onClick={this.updateCheckhandle} />
+          <input
+            type="checkbox"
+            onClick={this.updateCheckhandle}
+            value={`${bucket.b_goalDate !== "" ? "true" : "false"} `}
+          />
         </td>
         <td>{bucket.b_startDate}</td>
         <td>
@@ -87,21 +94,28 @@ class BucketListItem extends Component {
                 value={this.state.b_target}
                 onClick={this.inputClick}
                 onChange={this.editInput}
+                className="handle-input"
               />
-              <button type="button" onClick={this.updatehandle}>
-                완료
-              </button>
+              <button
+                type="button"
+                onClick={this.updatehandle}
+                className="btn-confirm"
+              ></button>
             </div>
           ) : (
-            <span>{bucket.b_target}</span>
+            <span className={`span ${bucket.b_goalDate !== "" ? "mark" : ""}`}>
+              {bucket.b_target}
+            </span>
           )}
         </td>
 
         <td>{bucket.b_goalDate}</td>
         <td>
-          <button type="button" onClick={this.deletehandle}>
-            삭제
-          </button>
+          <button
+            type="button"
+            onClick={this.deletehandle}
+            className="btn-del"
+          ></button>
         </td>
       </tr>
     );

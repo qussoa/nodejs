@@ -34,11 +34,19 @@ router.post("/insert", (req, res) => {
 });
 
 router.put("/", (req, res) => {
+  console.log("check", req.body);
   console.log(req.body);
-  req.body.b_goalDate = moment().format("MM[-]DD");
-  var bucket = new bucketVO(req.body);
-  bucket
-    .update({ _id: req.body._id }, { $set: req.body })
+  if (req.body.b_goalDate === "") {
+    req.body.b_goalDate = moment().format("MM[-]DD");
+  } else {
+    req.body.b_goalDate = "";
+  }
+
+  // var bucket = new bucketVO(req.body);
+
+  // update 명령은 새로운 값을 만들지 않고 기본 VO에서 upodate() 호출
+  bucketVO
+    .updateOne({ _id: req.body._id }, { $set: req.body })
     .exec((err, result) => {
       res.json(result);
     });
