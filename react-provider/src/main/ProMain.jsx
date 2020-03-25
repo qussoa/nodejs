@@ -31,11 +31,8 @@ class ProMain extends Component {
         컴퍼넌트에 전달
          */}
         <Mprovider.Provider value={this.state}>
-          <ProSub1 message={this.state.message} />
-          <ProSub2
-            message={this.state.message}
-            changeMessage={this.changeMessage}
-          />
+          <ProSub1 />
+          <ProSub2 />
         </Mprovider.Provider>
       </div>
     );

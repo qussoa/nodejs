@@ -1,16 +1,21 @@
 import React, { Component } from "react";
+import MProvider from "../provider/Messageprovider";
+import ProFunction from "./ProFunction";
 
 class ProInsert extends Component {
   state = {
     message: "나는 Insert 컴퍼넌트"
   };
+
+  static contextType = MProvider;
+
   /*
   Main->Sub2->나에게 전달된 changeMessage 메서드를 호출하여
   지금부터 내가 보내는 문자열을 전체 컴퍼넌트가
   공유하는 message 변수에 적용하라
 */
   messageSend = () => {
-    this.props.changeMessage(this.state.message);
+    this.context.changeMessage(this.state.message);
   };
 
   // handleChange에서 this.state.message를 변경하면
@@ -40,6 +45,8 @@ class ProInsert extends Component {
           <button onClick={this.messageSend}>전달</button>
         </div>
         {message}
+        <h4>함수방식 컴퍼넌트 가져오기</h4>
+        <ProFunction />
       </div>
     );
   }
