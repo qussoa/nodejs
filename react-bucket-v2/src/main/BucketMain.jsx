@@ -1,6 +1,7 @@
 import React, { Component } from "react";
 import BucketInsert from "../main/BucketInsert";
 import BucketList from "./BucketList";
+import BucketContext from "../provider/BucketProvider";
 
 class BucketMain extends Component {
   id = 0;
@@ -14,9 +15,14 @@ class BucketMain extends Component {
         b_title: "리엑트 정복",
         b_end_date: "",
         b_end_check: false,
-        b_cancle: false
+        b_cancel: false
       }
-    ]
+    ],
+    changeFlag: id => this.changeFlag(id),
+    bucket_update: (id, b_title) => this.bucket_update(id, b_title),
+    bucket_add: b_title => this.bucket_add(b_title),
+    bucket_complete: (id, b_end_date) => this.bucket_complete(id, b_end_date),
+    toggleCancel: id => this.toggleCancel(id)
   };
 
   // 17 이후는 사용불가
@@ -105,9 +111,9 @@ class BucketMain extends Component {
       b_flag_text: "일반",
       b_start_date: date.toString(),
       b_title: b_title,
-      b_end_date: date.toString(),
+      b_end_date: "", //date.toString(),
       b_end_check: false,
-      b_cancle: false
+      b_cancel: false
     };
 
     this.setState({
@@ -135,6 +141,42 @@ class BucketMain extends Component {
     });
   };
 
+  // 완료선택이 이루어지면 bucketList를 map으로 반복하면서
+  // id값과 일치하는 항목을 찾고
+  // 있으면 해당 항목을 변경하는 작업수행
+  bucket_complete = (id, b_end_date) => {
+    // alert(id + "완료 : " + b_end_date);
+    const { bucketList } = this.state;
+    this.setState({
+      bucketList: bucketList.map(bucket => {
+        // id값과 일치하는 리스트가 있느냐
+        if (bucket.b_id === id) {
+          const date = new Date();
+          // 현재 항목의 b_end_date 값이 없느냐
+          // 없으면 새로 만든 date 값을 사용하고
+          // 있으면 값을 지우는 ""으로 사용하겠다
+          const end_date = bucket.b_end_date === "" ? date : "";
+          return { ...bucket, b_end_date: end_date };
+        } else {
+          return bucket;
+        }
+      })
+    });
+  };
+
+  toggleCancel = id => {
+    const { bucketList } = this.state;
+    this.setState({
+      bucketList: bucketList.map(bucket => {
+        if (bucket.b_id === id) {
+          return { ...bucket, b_cancel: !bucket.b_cancel };
+        } else {
+          return bucket;
+        }
+      })
+    });
+  };
+
   // react lifeCycle 메서드
   /*
     만약 현재 Main 컴퍼넌트에 많은 state 변수들이 있을때
@@ -150,12 +192,10 @@ class BucketMain extends Component {
   render() {
     return (
       <div>
-        <BucketInsert bucket_add={this.bucket_add} />
-        <BucketList
-          bucket_update={this.bucket_update}
-          bucketList={this.state.bucketList}
-          changeFlag={this.changeFlag}
-        />
+        <BucketContext.Provider value={this.state}>
+          <BucketInsert />
+          <BucketList />
+        </BucketContext.Provider>
       </div>
     );
   }

@@ -17,6 +17,7 @@ class BucketItemView extends Component {
       <React.Fragment>
         <td onClick={this.handleChangeFlag}>{bucketItem.b_flag_text}</td>
         <td>
+          {bucketItem.b_id}.
           <Moment format="YYYY-MM-DD">{bucketItem.b_start_date}</Moment>
         </td>
         <td onClick={this.changeEdit}>{bucketItem.b_title}</td>
@@ -28,7 +29,7 @@ class BucketItemView extends Component {
           {bucketItem.b_end_date !== "" ? (
             <Moment format="YYYY-MM-DD">{bucketItem.b_end_date}</Moment>
           ) : (
-            ""
+            "◎"
           )}
         </td>
         <td>
