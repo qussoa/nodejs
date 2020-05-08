@@ -8,15 +8,15 @@ class bbsList extends Component {
       return <BBsItem key={bbsVO.id} bbsVO={bbsVO} />;
     });
     return (
-      <table className="table table-all ">
-        <tbody>
+      <table className="table table-striped table-hover">
+        <thead>
           <tr>
             <th>날짜</th>
             <th>작성자</th>
             <th>제목</th>
           </tr>
-          {bbsMap}
-        </tbody>
+        </thead>
+        <tbody>{bbsMap}</tbody>
       </table>
     );
   }

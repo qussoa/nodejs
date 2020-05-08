@@ -3,6 +3,7 @@ import axios from "axios";
 
 class bbsWrite extends React.Component {
   state = {
+    id: 0,
     bbsDate: "",
     bbsAuth: "",
     bbsTitle: "",
@@ -11,9 +12,18 @@ class bbsWrite extends React.Component {
 
   /*
   axios를 사용하여 서버로 데이터를 전송
+
+  router로 감싸진 형태의 component들은 
+  props로 macth, location, history와 같은 객체를
+  상위 Router로 전달받는다
+  macth, location은 보통 query 문자열을 통하여
+  변수값을 전달받을때 사용하고
+  history는 push() 메서드를 사용하여
+  어떤 일을 수행한 후 원하는 path로 점프하는 코드를 수행할 수 있다
   */
   bbsInsert = () => {
     let formData = new FormData();
+    formData.append("id", this.state.id);
     formData.append("bbsDate", this.state.bbsDate);
     formData.append("bbsAuth", this.state.bbsAuth);
     formData.append("bbsTitle", this.state.bbsTitle);
@@ -22,12 +32,41 @@ class bbsWrite extends React.Component {
     axios
       .post("http://localhost:8080/bbs/api/insert", formData)
       .then((result) => {
-        console.log(result);
+        const bbsid = result.data.id;
+        this.props.history.push("/bbsDetail/" + bbsid);
       })
       .catch((error) => {
         console.log(error);
       });
   };
+
+  bbsDetailFetch = () => {
+    // 만약 bbsid 값이 undifined이면0을 id에 저장하고
+    // 그렇지 않으면 그 문자열을 id에 저장하라
+    const id = this.props.match.params.bbsid || 0;
+    // id = this.props.match.params.bbsid == 'undifined' ? 0 : ....bbsid
+    if (id == 0) return;
+    fetch("http://localhost:8080/bbs/api/detail?bbsid=" + id)
+      .then((res) => {
+        return res.json();
+      })
+      .then((result) => {
+        this.setState({
+          id: result.id,
+          bbsDate: result.bbsDate,
+          bbsAuth: result.bbsAuth,
+          bbsTitle: result.bbsTitle,
+          bbsText: result.bbsText,
+        });
+      });
+  };
+
+  componentDidMount() {
+    this.bbsDetailFetch();
+  }
+  shouldComponentUpdate(nextProps, nextState) {
+    return true;
+  }
 
   handleOnChange = (e) => {
     this.setState({
@@ -36,6 +75,8 @@ class bbsWrite extends React.Component {
   };
 
   render() {
+    console.log(this.props);
+
     return (
       <div>
         <div>
@@ -52,7 +93,7 @@ class bbsWrite extends React.Component {
         <div>
           <label className="form-group">작성자</label>
           <input
-            value={this.statebbsAuth}
+            value={this.state.bbsAuth}
             name="bbsAuth"
             className="form-control"
             placeholder="작성자를 입력"

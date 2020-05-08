@@ -1,13 +1,20 @@
 import React from "react";
+import { BrowserRouter as Router, Route } from "react-router-dom";
 import Home from "./routes/Home";
 import About from "./routes/About";
-import { HashRouter, Route } from "react-router-dom";
+import Detail from "./routes/Detail";
+
+import Navigation from "./component/Navigation";
+import "./App.css";
+
 function App() {
   return (
-    <HashRouter>
-      <Route path="/" component={Home} />
+    <Router>
+      <Navigation />
+      <Route exact path="/" component={Home} />
       <Route path="/about" component={About} />
-    </HashRouter>
+      <Route path="/movie/:id" component={Detail} />
+    </Router>
   );
 }
 export default App;

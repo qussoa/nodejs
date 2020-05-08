@@ -1,6 +1,6 @@
 import React from "react";
 import axios from "axios";
-import Moive from "./component/Movies";
+import Moive from "../component/Movies";
 import "./Home.css";
 
 class Home extends React.Component {
