@@ -15,83 +15,9 @@
     <!-- Latest compiled JavaScript -->
     <script src="https://maxcdn.bootstrapcdn.com/bootstrap/4.4.1/js/bootstrap.min.js"></script>
     <script src="https://code.jquery.com/jquery-latest.min.js"></script>
+    <link rel="stylesheet" href="main.css" />
   </head>
-  <style>
-    /* 가져다 쓸 색*/
-    .red-text {
-      color: #f1404b;
-    }
-    .red2-text {
-      color: #744649;
-    }
-    .gray-text {
-      color: #dddfe6;
-    }
-    .bg-gray {
-      background-color: #dddfe6;
-    }
-    .white-text {
-      color: #f4f5f9;
-    }
-    .black-text {
-      color: #252c41;
-    }
-
-    /* input animation*/
-    .scope {
-      height: 30px;
-    }
-    .input-style {
-      width: 100px;
-      margin-top: 8px;
-      border-radius: 1rem;
-      border: 1px solid #252c41;
-      padding-left: 15px;
-    }
-
-    /* 선 안에 글자 css*/
-    .hr-sect {
-      display: flex;
-      flex-basis: 100%;
-      align-items: center;
-
-      font-size: 20px;
-      margin: 8px 0px;
-      color: #86888f;
-    }
-    .hr-sect::before,
-    .hr-sect::after {
-      content: "";
-      flex-grow: 1;
-      background: #252c41;
-      height: 1px;
-      font-size: 0px;
-      line-height: 0px;
-      margin: 0px 16px;
-    }
-
-    .slide-width {
-      width: 70%;
-      margin-left: auto;
-      margin-right: auto;
-    }
-    /*mouse over img*/
-    #img1 {
-      display: inline-block;
-      width: 300px;
-      height: 300px;
-      background: url("./img/dress1.jpg") no-repeat;
-      background-size: 300px 300px;
-    }
-    #img1:hover {
-      background: url("./img/dress2.jpg") no-repeat;
-      background-size: 300px 300px;
-    }
-
-    footer {
-      margin: 0px;
-    }
-  </style>
+  <style></style>
   <script>
     $(document).on("click", ".scope", function () {
       (".scope");
@@ -101,11 +27,11 @@
     <!--header include-->
     <header>
       <div class="d-flex">
-        <ul class="nav ml-auto">
+        <ul class="nav ml-auto mr-5">
           <!-- input 검색창-->
           <li class="nav-item nav-input">
-            <img src="./img/scope.png" class="scope" />
             <input class="input-style" />
+            <img src="./img/scope.png" class="scope" />
           </li>
           <!-- annonimous& authentication-->
           <li class="nav-item">
@@ -126,14 +52,12 @@
     </header>
     <!--nav include 할 것-->
     <nav
-      class="navbar navbar-expand-sm bg-white d-flex justify-content-center mt-5 mb-5 sticky-top"
+      class="navbar navbar-expand-sm bg-white d-flex ml-5 mt-5 mb-5 sticky-top"
     >
-      <h2 class="red-text mr-5">NAVIYA</h2>
+      <a href="main.html" class="red-text mr-5 h-title"><h2>NAVIYA</h2></a>
       <div class="d-flex">
-        <a class="nav-link black-text">shop</a>
-        <a class="nav-link black-text">menu1</a>
-        <a class="nav-link black-text">menu2</a>
-        <a class="nav-link black-text">QnA</a>
+        <a class="nav-link black-text" href="shopList.html">SHOP</a>
+        <a class="nav-link black-text">고객센터</a>
       </div>
     </nav>
     <!--main 화면 img들어갈 것-->
@@ -184,6 +108,8 @@
       </div>
     </main>
   </body>
+
+  <!-- footer include -->
   <footer class="bg-gray mt-5">
     <div class="container p-5">
       <div class="row">
@@ -207,21 +133,37 @@
         <div class="col-sm-3">
           <div>
             <span class="font-weight-bold"> TEAMLEADER </span><br />
-            <span>&nbsp;&nbsp;- NAVI</span>
+            <span
+              ><a class="atag-github" href="https://github.com/jeongseongjong"
+                >&nbsp;&nbsp;- NAVI</a
+              ></span
+            >
           </div>
           <div>
             <span class="font-weight-bold">UI/UX</span> <br />
-            <span>&nbsp;&nbsp;- QUSSOA</span>
+            <span
+              ><a class="atag-github" href="https://github.com/qussoa"
+                >&nbsp;&nbsp;- QUSSOA</a
+              ></span
+            >
           </div>
         </div>
         <div class="col-sm-3">
           <div>
             <span class="font-weight-bold">DEVELOPER</span><br />
-            <span>&nbsp;&nbsp;- PRINCESSEJIN</span>
+            <span
+              ><a class="atag-github" href="https://github.com/leeiter"
+                >&nbsp;&nbsp;- PRINCESSEJIN</a
+              ></span
+            >
           </div>
           <div>
             <span class="font-weight-bold">DEVELOPER</span><br />
-            <span>&nbsp;&nbsp; - BJ.MIN</span>
+            <span
+              ><a class="atag-github" href="https://github.com/bjmin17"
+                >&nbsp;&nbsp; - BJ.MIN</a
+              ></span
+            >
           </div>
         </div>
         <div class="col-sm-3">
